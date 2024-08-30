@@ -1,19 +1,23 @@
 import Image from "next/image";
-import { Order } from "./orders-table";
-import { OrdersProperties } from "./orders-properties";
+import { Application } from ".";
+import { ApplicationsProperties } from "./OrdersProperties";
 
-interface OrdersTableItemProps {
-  order: Order;
+interface ApplicationsTableItemProps {
+  application: Application;
   onCheckboxChange: (id: number, checked: boolean) => void;
   isSelected: boolean;
 }
 
-export default function OrdersTableItem({ order, onCheckboxChange, isSelected }: OrdersTableItemProps) {
+export default function ApplicationsTableItem({
+  application,
+  onCheckboxChange,
+  isSelected,
+}: ApplicationsTableItemProps) {
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onCheckboxChange(order.id, e.target.checked);
+    onCheckboxChange(application.id, e.target.checked);
   };
 
-  const { descriptionOpen, setDescriptionOpen, statusColor, typeIcon } = OrdersProperties();
+  const { descriptionOpen, setDescriptionOpen, statusColor, typeIcon } = ApplicationsProperties();
 
   return (
     <tbody className="text-sm">
@@ -35,39 +39,45 @@ export default function OrdersTableItem({ order, onCheckboxChange, isSelected }:
         <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
           <div className="flex items-center text-gray-800">
             <div className="w-10 h-10 shrink-0 flex items-center justify-center bg-gray-100 dark:bg-gray-700 rounded-full mr-2 sm:mr-3">
-              <Image className="ml-1" src={order.image} width={20} height={20} alt={order.order} />
+              <Image
+                className="ml-1"
+                src={application.image}
+                width={20}
+                height={20}
+                alt={application.order}
+              />
             </div>
-            <div className="font-medium text-sky-600">{order.order}</div>
+            <div className="font-medium text-sky-600">{application.order}</div>
           </div>
         </td>
         <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-          <div>{order.date}</div>
+          <div>{application.date}</div>
         </td>
         <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-          <div className="font-medium text-gray-800 dark:text-gray-100">{order.customer}</div>
+          <div className="font-medium text-gray-800 dark:text-gray-100">{application.customer}</div>
         </td>
         <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-          <div className="text-left font-medium text-green-600">{order.total}</div>
+          <div className="text-left font-medium text-green-600">{application.total}</div>
         </td>
         <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
           <div
             className={`inline-flex font-medium rounded-full text-center px-2.5 py-0.5 ${statusColor(
-              order.status
+              application.status
             )}`}
           >
-            {order.status}
+            {application.status}
           </div>
         </td>
         <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-          <div className="text-center">{order.items}</div>
+          <div className="text-center">{application.items}</div>
         </td>
         <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-          <div className="text-left">{order.location}</div>
+          <div className="text-left">{application.location}</div>
         </td>
         <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
           <div className="flex items-center">
-            {typeIcon(order.type)}
-            <div>{order.type}</div>
+            {typeIcon(application.type)}
+            <div>{application.type}</div>
           </div>
         </td>
         <td className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap w-px">
@@ -78,7 +88,7 @@ export default function OrdersTableItem({ order, onCheckboxChange, isSelected }:
               }`}
               aria-expanded={descriptionOpen}
               onClick={() => setDescriptionOpen(!descriptionOpen)}
-              aria-controls={`description-${order.id}`}
+              aria-controls={`description-${application.id}`}
             >
               <span className="sr-only">Menu</span>
               <svg className="w-8 h-8 fill-current" viewBox="0 0 32 32">
@@ -93,7 +103,7 @@ export default function OrdersTableItem({ order, onCheckboxChange, isSelected }:
       Note that you must set a "colSpan" attribute on the <td> element,
       and it should match the number of columns in your table
       */}
-      <tr id={`description-${order.id}`} role="region" className={`${!descriptionOpen && "hidden"}`}>
+      <tr id={`description-${application.id}`} role="region" className={`${!descriptionOpen && "hidden"}`}>
         <td colSpan={10} className="px-2 first:pl-5 last:pr-5 py-3">
           <div className="flex items-center bg-gray-50 dark:bg-gray-950/[0.15] dark:text-gray-400 p-3 -mt-3">
             <svg
@@ -103,7 +113,7 @@ export default function OrdersTableItem({ order, onCheckboxChange, isSelected }:
             >
               <path d="M1 16h3c.3 0 .5-.1.7-.3l11-11c.4-.4.4-1 0-1.4l-3-3c-.4-.4-1-.4-1.4 0l-11 11c-.2.2-.3.4-.3.7v3c0 .6.4 1 1 1zm1-3.6l10-10L13.6 4l-10 10H2v-1.6z" />
             </svg>
-            <div className="italic">{order.description}</div>
+            <div className="italic">{application.description}</div>
           </div>
         </td>
       </tr>

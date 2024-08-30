@@ -2,16 +2,16 @@ import { SelectedItemsProvider } from "@/providers/SelectedItemsContext";
 // import DeleteButton from "@/components/delete-button";
 // import DateSelect from "@/components/date-select";
 // import FilterButton from "@/components/dropdown-filter";
-import OrdersTable from "@/components/Table";
+import ApplicationsTable from "@/components/Table";
 // import PaginationClassic from "@/components/pagination-classic";
 
 import Image01 from "@/public/images/icon-01.svg";
 import Image02 from "@/public/images/icon-02.svg";
 import Image03 from "@/public/images/icon-03.svg";
 
-const OrdersContent = () => {
+const Main = () => {
   // Some dummy orders data
-  const orders = [
+  const applications = [
     {
       id: 0,
       image: Image01,
@@ -160,7 +160,7 @@ const OrdersContent = () => {
       <div className="sm:flex sm:justify-between sm:items-center mb-8">
         {/* Left: Title */}
         <div className="mb-4 sm:mb-0">
-          <h1 className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">Orders</h1>
+          <h1 className="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">Applications</h1>
         </div>
 
         {/* Right: Actions */}
@@ -182,13 +182,13 @@ const OrdersContent = () => {
             <svg className="fill-current shrink-0 xs:hidden" width="16" height="16" viewBox="0 0 16 16">
               <path d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
             </svg>
-            <span className="max-xs:sr-only">Add Order</span>
+            <span className="max-xs:sr-only">Add Application</span>
           </button>
         </div>
       </div>
 
       {/* Table */}
-      <OrdersTable orders={orders} />
+      <ApplicationsTable applications={applications} />
 
       {/* Pagination */}
       {/* <div className="mt-8">
@@ -198,10 +198,10 @@ const OrdersContent = () => {
   );
 };
 
-export default function Orders() {
+export default function Applications() {
   return (
     <SelectedItemsProvider>
-      <OrdersContent />
+      <Main />
     </SelectedItemsProvider>
   );
 }

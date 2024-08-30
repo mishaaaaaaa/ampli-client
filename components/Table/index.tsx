@@ -2,9 +2,9 @@
 
 import { StaticImageData } from "next/image";
 import { useItemSelection } from "@/hooks/useItemSelection";
-import OrdersTableItem from "./orders-table-item";
+import ApplicationsTableItem from "./TabelItem";
 
-export interface Order {
+export interface Application {
   id: number;
   image: StaticImageData;
   order: string;
@@ -18,15 +18,15 @@ export interface Order {
   description: string;
 }
 
-export default function OrdersTable({ orders }: { orders: Order[] }) {
+export default function ApplicationsTable({ applications }: { applications: Application[] }) {
   const { selectedItems, isAllSelected, handleCheckboxChange, handleSelectAllChange } =
-    useItemSelection(orders);
+    useItemSelection(applications);
 
   return (
     <div className="bg-white dark:bg-gray-800 shadow-sm rounded-xl relative">
       <header className="px-5 py-4">
         <h2 className="font-semibold text-gray-800 dark:text-gray-100">
-          All Orders <span className="text-gray-400 dark:text-gray-500 font-medium">442</span>
+          All Applications <span className="text-gray-400 dark:text-gray-500 font-medium">442</span>
         </h2>
       </header>
       <div>
@@ -50,7 +50,7 @@ export default function OrdersTable({ orders }: { orders: Order[] }) {
                   </div>
                 </th>
                 <th className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
-                  <div className="font-semibold text-left">Order</div>
+                  <div className="font-semibold text-left">Application</div>
                 </th>
                 <th className="px-2 first:pl-5 last:pr-5 py-3 whitespace-nowrap">
                   <div className="font-semibold text-left">Date</div>
@@ -79,12 +79,12 @@ export default function OrdersTable({ orders }: { orders: Order[] }) {
               </tr>
             </thead>
             {/* Table body */}
-            {orders.map((order) => (
-              <OrdersTableItem
-                key={order.id}
-                order={order}
+            {applications.map((application) => (
+              <ApplicationsTableItem
+                key={application.id}
+                application={application}
                 onCheckboxChange={handleCheckboxChange}
-                isSelected={selectedItems.includes(order.id)}
+                isSelected={selectedItems.includes(application.id)}
               />
             ))}
           </table>

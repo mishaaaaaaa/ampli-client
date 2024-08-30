@@ -2,7 +2,7 @@
 
 import { ReactElement, useState } from "react";
 
-export const OrdersProperties = () => {
+export const ApplicationsProperties = () => {
   const [descriptionOpen, setDescriptionOpen] = useState<boolean>(false);
 
   const statusColor = (status: string): string => {
